@@ -1,6 +1,6 @@
 # trusted-setups
 
-Easily access trusted setups in JS. Includes KZG / ETH.
+Easily access KZG / ETH trusted setups in JS.
 
 ## Usage
 

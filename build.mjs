@@ -1,9 +1,10 @@
-import { bls12_381 } from '@noble/curves/bls12-381';
 import { readFileSync, writeFileSync } from 'node:fs';
+import { bls12_381 } from '@noble/curves/bls12-381';
 import { bytesToHex } from '@noble/curves/abstract/utils';
 import { sha256 } from '@noble/hashes/sha2';
 
 const CHECKSUM = 'd39b9f2d047cc9dca2de58f264b6a09448ccd34db967881a6713eacacf0f26b7';
+const CHECKSUM_index_mjs = '97d285835d5f2417e5a4dc875a1409c4fa6194f24fd00e83f3b02e042cad0b18';
 
 const add0x = (lines) => lines.map((i) => `0x${i}`);
 function assertLen(expectedLength) {
@@ -36,16 +37,20 @@ function write(file, g1, g2) {
   const resESM = res + 'export const trustedSetup = setup;\n';
   const resCJS = res + 'exports.trustedSetup = setup;';
   console.log('writing', file);
-  writeFileSync(`${file}.mjs`, resESM);
+  writeFileSync(`esm/${file}.js`, resESM);
   writeFileSync(`${file}.js`, resCJS);
+}
+
+function assertSha256(buffer, checksum) {
+  if (bytesToHex(sha256(buffer)) !== checksum) throw new Error('invalid checksum');
 }
 
 function main() {
   console.log('reading txt');
   const rawFile = readFileSync('./trusted_setup.txt', 'utf-8');
   const lines = rawFile.split('\n');
-  if (bytesToHex(sha256(rawFile)) !== CHECKSUM) throw new Error('invalid checksum');
-  if (lines.length !== 2 + 4096 + 65 + 4096 + 1)
+  assertSha256(rawFile, CHECKSUM);
+  if (lines.length !== 2 + 4096 + 65 + 4096 + 1) // [info][g1_lag][g2_mon][g1_mon][eol]
     throw new Error('invalid file: ' + lines.length);
   const lengthG1 = Number.parseInt(lines[0]);
   const lengthG2 = Number.parseInt(lines[1]);
@@ -63,6 +68,9 @@ function main() {
   const g2_mon_raw = g2_mon.map(hexToCoords(bls12_381.G2.ProjectivePoint));
   write('index', g1_lag, g2_mon);
   write('fast', g1_lag_raw, g2_mon_raw);
+
+  console.log('validating esm/index.js checksum');
+  assertSha256(readFileSync('./esm/index.js'), CHECKSUM_index_mjs);
 
   console.log('writing trusted_setup.json');
   const json =

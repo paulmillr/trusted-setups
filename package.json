@@ -1,7 +1,7 @@
 {
   "name": "trusted-setups",
-  "description": "",
-  "version": "1.0.0",
+  "description": "Easily access KZG / ETH trusted setups in JS",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
     "build": "node build.mjs",
@@ -14,16 +14,23 @@
   },
   "license": "MIT",
   "files": [
-    "index.js", "index.mjs", "index.d.ts", "fast.js", "fast.mjs", "fast.d.ts",
+    "index.js",
+    "index.d.ts",
+    "esm/index.js",
+    "esm/index.d.ts",
+    "fast.js",
+    "fast.d.ts",
+    "esm/fast.js",
+    "esm/fast.d.ts",
     "trusted_setup.json"
   ],
   "exports": {
     ".": {
-      "import": "./index.mjs",
+      "import": "./esm/index.js",
       "require": "./index.js"
     },
     "./fast.js": {
-      "import": "./fast.mjs",
+      "import": "./esm/fast.js",
       "require": "./fast.js"
     }
   },
