@@ -1,15 +1,46 @@
 {
   "name": "trusted-setups",
+  "description": "",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build.mjs",
+    "test": "node test.mjs"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Paul Miller (https://paulmillr.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulmillr/trusted-setups.git"
+  },
   "license": "MIT",
-  "description": "",
+  "files": [
+    "index.js", "index.mjs", "index.d.ts", "fast.js", "fast.mjs", "fast.d.ts",
+    "trusted_setup.json"
+  ],
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./fast.js": {
+      "import": "./fast.mjs",
+      "require": "./fast.js"
+    }
+  },
   "devDependencies": {
-    "@noble/curves": "1.6.0"
-  }
+    "@noble/curves": "1.6.0",
+    "@noble/hashes": "1.5.0",
+    "c-kzg": "4.0.1",
+    "kzg-wasm": "0.4.0",
+    "micro-eth-signer": "0.10.0",
+    "micro-should": "0.4.0"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "ethereum",
+    "eth",
+    "kzg",
+    "sign",
+    "trusted setup"
+  ]
 }

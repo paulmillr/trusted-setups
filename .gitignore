@@ -1,0 +1,10 @@
+node_modules
+/build/micro-eth-signer.js
+/esm
+*.d.ts
+*.d.ts.map
+*.js.map
+/*.js
+/abi
+/net
+/setup
