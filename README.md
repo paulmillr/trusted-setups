@@ -19,12 +19,9 @@ Other libraries with similar API should also work.
 
 ```js
 import { trustedSetup } from 'trusted-setups';
-
 // fast setup for eth-signer
 import { trustedSetup as fast } from 'trusted-setups/fast.js';
-
 // trustedSetup is { g1_lagrange: string[]; g2_monomial: string[] }
-
 
 // eth-signer
 import { KZG } from 'micro-eth-signer/kzg';
