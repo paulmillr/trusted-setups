@@ -51,13 +51,10 @@ trustedSetup.g2_monomial.slice(0, 2)
 
 ## Verification
 
-`npm install && npm run build` will create all files.
-
-The files are built from `trusted_setup.txt`, which is present in
+`npm install && npm run build` will build files from `trusted_setup.txt`, which was copied from
 [c-kzg-4844](https://github.com/ethereum/c-kzg-4844/blob/445387f7dfd95b2b0d74b537b9d28f7b603b6f24/src/trusted_setup.txt).
 
-The checksum is `d39b9f2d047cc9dca2de58f264b6a09448ccd34db967881a6713eacacf0f26b7`,
-it is verified on a build.
+Its checksum is `d39b9f2d047cc9dca2de58f264b6a09448ccd34db967881a6713eacacf0f26b7`.
 
 ## License
 
