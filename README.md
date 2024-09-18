@@ -12,16 +12,10 @@ Exports 3 files:
 
 > npm install trusted-setups
 
-  should('kzg-wasm', async () => {
-  });
-
-  should('c-kzg', () => {
-  });
-
-  // should('eth-signer', () => {
-  //   const small = new KZG(setup);
-  //   const fast = new KZG(fastSetup);
-  // })
+We test against [eth-signer](https://github.com/paulmillr/micro-eth-signer),
+[kzg-wasm](https://github.com/ethereumjs/kzg-wasm) and
+[c-kzg](https://github.com/ethereum/c-kzg-4844).
+Other libraries with similar API should also work.
 
 ```js
 import { trustedSetup } from 'trusted-setups';
