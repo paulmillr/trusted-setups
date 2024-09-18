@@ -1,6 +1,6 @@
 import { strictEqual } from 'assert';
 import { describe, should } from 'micro-should';
-import { trustedSetup as setup } from './index.mjs';
+import { trustedSetup as setup } from './esm/index.js';
 // import { trustedSetup as fastSetup } from './fast.mjs';
 
 // eth-signer
