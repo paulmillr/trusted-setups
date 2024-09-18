@@ -31,9 +31,12 @@ function hexToCoords(pointConstructor) {
 }
 
 function write(file, g1, g2) {
-  let res = `const g1 = \`${g1.join('\n')}\`;\nconst g2 = \`${g2.join('\n')}\`;\n`
+  const g1_str = g1.join('\n');
+  const g2_str = g2.join('\n');
+  let res = `const g1 = \`${g1_str}\`;\nconst g2 = \`${g2_str}\`;\n`
   res += `const parse = (str) => str.split('\\n').map(l => '0x' + l);\n`
   res += 'const setup = { g1_lagrange: parse(g1), g2_monomial: parse(g2) };\n'
+  if (file === 'fast') res += 'setup.encoding = "fast_v1";\n'
   const resESM = res + 'export const trustedSetup = setup;\n';
   const resCJS = res + 'exports.trustedSetup = setup;';
   console.log('writing', file);
