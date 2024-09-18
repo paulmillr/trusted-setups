@@ -28,8 +28,9 @@ import { KZG } from 'micro-eth-signer/kzg';
 const kzg = new KZG(trustedSetup);
 
 // kzg-wasm
-const g1 = setup.g1_lagrange.map((i) => i.substring(2)).join('');
-const g2 = setup.g2_monomial.map((i) => i.substring(2)).join('');
+const strip0x = items => items.map((i) => i.substring(2)).join('');
+const g1 = strip0x(trustedSetup.g1_lagrange);
+const g2 = strip0x(trustedSetup.g2_monomial);
 const opts = { n1: 4096, n2: 65, g1, g2 };
 const kzg = await loadKZG(opts);
 
