@@ -30,7 +30,12 @@ function hexToCoords(pointConstructor) {
   }
 }
 
-function write(file, g1, g2) {
+function write(path, data) {
+  console.log('writing', path);
+  writeFileSync(path, data);
+}
+
+function writeFiles(file, g1, g2) {
   const g1_str = g1.join('\n');
   const g2_str = g2.join('\n');
   let res = `const g1 = \`${g1_str}\`;\nconst g2 = \`${g2_str}\`;\n`
@@ -39,9 +44,8 @@ function write(file, g1, g2) {
   if (file === 'fast') res += 'setup.encoding = "fast_v1";\n'
   const resESM = res + 'export const trustedSetup = setup;\n';
   const resCJS = res + 'exports.trustedSetup = setup;';
-  console.log('writing', file);
-  writeFileSync(`esm/${file}.js`, resESM);
-  writeFileSync(`${file}.js`, resCJS);
+  write(`esm/${file}.js`, resESM);
+  write(`${file}.js`, resCJS);
 }
 
 function assertSha256(buffer, checksum) {
@@ -49,7 +53,7 @@ function assertSha256(buffer, checksum) {
 }
 
 function main() {
-  console.log('reading txt');
+  console.log('reading trusted_setup.txt');
   const rawFile = readFileSync('./trusted_setup.txt', 'utf-8');
   const lines = rawFile.split('\n');
   assertSha256(rawFile, CHECKSUM);
@@ -58,7 +62,6 @@ function main() {
   const lengthG1 = Number.parseInt(lines[0]);
   const lengthG2 = Number.parseInt(lines[1]);
 
-  console.log('checking validity');
   const offset_a = 2 + lengthG1;
   const offset_b = offset_a + lengthG2;
   const g1_lag = lines.slice(2, offset_a).filter(assertLen(96));
@@ -67,15 +70,14 @@ function main() {
 
   // fast.js, takes 3 sec
   console.log('decompressing points');
+  const start = Date.now();
   const g1_lag_raw = g1_lag.map(hexToCoords(bls12_381.G1.ProjectivePoint));
   const g2_mon_raw = g2_mon.map(hexToCoords(bls12_381.G2.ProjectivePoint));
-  write('index', g1_lag, g2_mon);
-  write('fast', g1_lag_raw, g2_mon_raw);
 
-  console.log('validating esm/index.js checksum');
-  assertSha256(readFileSync('./esm/index.js'), CHECKSUM_index_mjs);
+  console.log('decompressed in', Date.now() - start, 'ms');
+  writeFiles('index', g1_lag, g2_mon);
+  writeFiles('fast', g1_lag_raw, g2_mon_raw);
 
-  console.log('writing trusted_setup.json');
   const json =
   JSON.stringify(
     {
@@ -86,7 +88,10 @@ function main() {
     null,
     2
   ) + '\n';
-  writeFileSync('trusted_setup.json', json);
+  write('trusted_setup.json', json);
+
+  console.log('verifying checksum of esm/index.js');
+  assertSha256(readFileSync('./esm/index.js'), CHECKSUM_index_mjs);
 }
 
 main();
