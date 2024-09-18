@@ -12,6 +12,17 @@ Exports 3 files:
 
 > npm install trusted-setups
 
+  should('kzg-wasm', async () => {
+  });
+
+  should('c-kzg', () => {
+  });
+
+  // should('eth-signer', () => {
+  //   const small = new KZG(setup);
+  //   const fast = new KZG(fastSetup);
+  // })
+
 ```js
 import { trustedSetup } from 'trusted-setups';
 
@@ -19,6 +30,21 @@ import { trustedSetup } from 'trusted-setups';
 import { trustedSetup as fast } from 'trusted-setups/fast.js';
 
 // trustedSetup is { g1_lagrange: string[]; g2_monomial: string[] }
+
+
+// eth-signer
+import { KZG } from 'micro-eth-signer/kzg';
+const kzg = new KZG(trustedSetup);
+
+// kzg-wasm
+const g1 = setup.g1_lagrange.map((i) => i.substring(2)).join('');
+const g2 = setup.g2_monomial.map((i) => i.substring(2)).join('');
+const opts = { n1: 4096, n2: 65, g1, g2 };
+const kzg = await loadKZG(opts);
+
+// c-kzg can't receive object, requires path
+const __dirname = dirname(fileURLToPath(import.meta.url));
+ckzg.loadTrustedSetup(1, __dirname + '/trusted_setup.json');
 
 trustedSetup.g1_lagrange.slice(0, 2)
 // [

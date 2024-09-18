@@ -1,10 +1,10 @@
 import { strictEqual } from 'assert';
 import { describe, should } from 'micro-should';
 import { trustedSetup as setup } from './esm/index.js';
-// import { trustedSetup as fastSetup } from './fast.mjs';
+import { trustedSetup as fastSetup } from './esm/fast.js';
 
 // eth-signer
-// import { KZG } from 'micro-eth-signer/kzg';
+import { KZG } from 'micro-eth-signer/kzg';
 
 // kzg-wasm
 import { loadKZG } from 'kzg-wasm';
@@ -37,10 +37,10 @@ describe('cross-tests', () => {
     ckzg.loadTrustedSetup(1, __dirname + '/trusted_setup.json');
   });
 
-  // should('eth-signer', () => {
-  //   const small = new KZG(setup);
-  //   const fast = new KZG(fastSetup);
-  // })
+  should('eth-signer', () => {
+    const small = new KZG(setup);
+    const fast = new KZG(fastSetup);
+  });
 })
 
 should.run();

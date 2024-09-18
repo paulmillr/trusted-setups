@@ -39,7 +39,7 @@
     "@noble/hashes": "1.5.0",
     "c-kzg": "4.0.1",
     "kzg-wasm": "0.4.0",
-    "micro-eth-signer": "0.10.0",
+    "micro-eth-signer": "0.11.0",
     "micro-should": "0.4.0"
   },
   "sideEffects": false,
