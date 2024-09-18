@@ -10,7 +10,9 @@ Exports 3 files:
 
 ## Usage
 
-> npm install trusted-setups
+> npm install @paulmillr/trusted-setups
+
+The package is located in namespace for security / anti-squatting reasons.
 
 We test against [eth-signer](https://github.com/paulmillr/micro-eth-signer),
 [kzg-wasm](https://github.com/ethereumjs/kzg-wasm) and
@@ -18,9 +20,9 @@ We test against [eth-signer](https://github.com/paulmillr/micro-eth-signer),
 Other libraries with similar API should also work.
 
 ```js
-import { trustedSetup } from 'trusted-setups';
+import { trustedSetup } from '@paulmillr/trusted-setups';
 // fast setup for eth-signer
-import { trustedSetup as fast } from 'trusted-setups/fast.js';
+import { trustedSetup as fast } from '@paulmillr/trusted-setups/fast.js';
 // trustedSetup is { g1_lagrange: string[]; g2_monomial: string[] }
 
 // eth-signer
