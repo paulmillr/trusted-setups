@@ -22,7 +22,8 @@
     "fast.d.ts",
     "esm/fast.js",
     "esm/fast.d.ts",
-    "trusted_setup.json"
+    "trusted_setup.json",
+    "esm/package.json"
   ],
   "exports": {
     ".": {
