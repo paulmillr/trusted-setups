@@ -1,6 +1,6 @@
 {
   "name": "@paulmillr/trusted-setups",
-  "description": "Easily access KZG / ETH trusted setups in JS",
+  "description": "Easily access KZG / PeerDAS ETH trusted setups in JS",
   "version": "0.2.0",
   "main": "cjs/small-kzg.js",
   "scripts": {
