@@ -2,7 +2,7 @@
 
 Easily access KZG + PeerDAS / ETH [trusted setups](https://vitalik.eth.limo/general/2022/03/14/trustedsetup.html) in JS.
 
-Exports 4 files:
+Exports 5 files:
 
 - `small-kzg.js` (default) - 400KB KZG setup
 - `small-peerdas.js` - ~800KB KZG+PeerDAS setup
