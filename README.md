@@ -23,6 +23,7 @@ Other libraries with similar API should also work.
 
 ```js
 import { trustedSetup } from '@paulmillr/trusted-setups/small-kzg.js';
+// import { trustedSetup } from '@paulmillr/trusted-setups/small-peerdas.js';
 // import { trustedSetup } from '@paulmillr/trusted-setups/fast-kzg.js';
 // import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js';
 
@@ -30,7 +31,7 @@ import { trustedSetup } from '@paulmillr/trusted-setups/small-kzg.js';
 type trustedSetup = {
   g1_lagrange: string[];
   g2_monomial: string[];
-  g1_monomial: string[]
+  g1_monomial: string[];
 }
 
 // eth-signer
