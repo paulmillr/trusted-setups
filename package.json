@@ -1,11 +1,11 @@
 {
   "name": "@paulmillr/trusted-setups",
   "description": "Easily access KZG / ETH trusted setups in JS",
-  "version": "0.1.2",
-  "main": "index.js",
+  "version": "0.2.0",
+  "main": "cjs/small-kzg.js",
   "scripts": {
-    "build": "node build.mjs",
-    "test": "node test.mjs"
+    "build": "node test/build.mjs",
+    "test": "node test/index.test.js"
   },
   "author": "Paul Miller (https://paulmillr.com)",
   "repository": {
@@ -14,34 +14,40 @@
   },
   "license": "MIT",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "esm/index.js",
-    "esm/index.d.ts",
-    "fast.js",
-    "fast.d.ts",
-    "esm/fast.js",
-    "esm/fast.d.ts",
+    "cjs",
+    "esm",
     "trusted_setup.json",
     "esm/package.json"
   ],
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "require": "./index.js"
+      "import": "./esm/small-kzg.js",
+      "require": "./cjs/small-kzg.js"
     },
-    "./fast.js": {
-      "import": "./esm/fast.js",
-      "require": "./fast.js"
+    "./small-kzg.js": {
+      "import": "./esm/small-kzg.js",
+      "require": "./cjs/small-kzg.js"
+    },
+    "./small-peerdas.js": {
+      "import": "./esm/small-peerdas.js",
+      "require": "./cjs/small-peerdas.js"
+    },
+    "./fast-kzg.js": {
+      "import": "./esm/fast-kzg.js",
+      "require": "./cjs/fast-kzg.js"
+    },
+    "./fast-peerdas.js": {
+      "import": "./esm/fast-peerdas.js",
+      "require": "./cjs/fast-peerdas.js"
     }
   },
   "devDependencies": {
-    "@noble/curves": "1.6.0",
-    "@noble/hashes": "1.5.0",
+    "@noble/curves": "1.9.1",
+    "@noble/hashes": "1.8.0",
+    "@paulmillr/jsbt": "0.4.0",
     "c-kzg": "4.0.1",
     "kzg-wasm": "0.4.0",
-    "micro-eth-signer": "0.11.0",
-    "micro-should": "0.4.0"
+    "micro-should": "0.5.2"
   },
   "sideEffects": false,
   "keywords": [

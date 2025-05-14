@@ -1,11 +1,13 @@
 # trusted-setups
 
-Easily access KZG / ETH [trusted setups](https://vitalik.eth.limo/general/2022/03/14/trustedsetup.html) in JS.
+Easily access KZG + PeerDAS / ETH [trusted setups](https://vitalik.eth.limo/general/2022/03/14/trustedsetup.html) in JS.
 
-Exports 3 files:
+Exports 4 files:
 
-- `index.js` (default) - js-friendly trusted setup
-- `fast.js` - faster, decompressed trusted setup for [eth-signer](https://github.com/paulmillr/micro-eth-signer)
+- `small-kzg.js` (default) - 400KB KZG setup
+- `small-peerdas.js` - ~800KB KZG+PeerDAS setup
+- `fast-kzg.js` - fast ~800KB KZG setup for [eth-signer](https://github.com/paulmillr/micro-eth-signer)
+- `fast-peerdas.js` - fast 3.1MB KZG+PeerDAS setup for [eth-signer](https://github.com/paulmillr/micro-eth-signer)
 - `trusted_setup.json`, for c-kzg and others
 
 ## Usage
@@ -20,10 +22,16 @@ We test against [eth-signer](https://github.com/paulmillr/micro-eth-signer),
 Other libraries with similar API should also work.
 
 ```js
-import { trustedSetup } from '@paulmillr/trusted-setups';
-// fast setup for eth-signer
-import { trustedSetup as fast } from '@paulmillr/trusted-setups/fast.js';
-// trustedSetup is { g1_lagrange: string[]; g2_monomial: string[] }
+import { trustedSetup } from '@paulmillr/trusted-setups/small-kzg.js';
+// import { trustedSetup } from '@paulmillr/trusted-setups/fast-kzg.js';
+// import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js';
+
+// Typed as:
+type trustedSetup = {
+  g1_lagrange: string[];
+  g2_monomial: string[];
+  g1_monomial: string[]
+}
 
 // eth-signer
 import { KZG } from 'micro-eth-signer/kzg';

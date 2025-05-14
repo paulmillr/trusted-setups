@@ -1,7 +1,7 @@
 import { strictEqual } from 'assert';
 import { describe, should } from 'micro-should';
-import { trustedSetup } from './esm/index.js';
-import { trustedSetup as fastSetup } from './esm/fast.js';
+import { trustedSetup as fastSetup } from '../esm/fast-kzg.js';
+import { trustedSetup } from '../esm/small-kzg.js';
 
 // eth-signer
 import { KZG } from 'micro-eth-signer/kzg';
@@ -11,8 +11,6 @@ import { loadKZG } from 'kzg-wasm';
 // import { deepStrictEqual } from 'node:assert';
 
 // c-kzg
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import ckzg from 'c-kzg';
 
 should('have correct amount of points', () => {
@@ -34,9 +32,8 @@ describe('cross-tests', () => {
 
   // Somehow this wrongly edits .txt file
   should('c-kzg', () => {
-    const __dirname = dirname(fileURLToPath(import.meta.url));
     // Because it cannot receive JSON object, but requires path instead
-    ckzg.loadTrustedSetup(1, __dirname + '/trusted_setup.json');
+    ckzg.loadTrustedSetup(1, import.meta.dirname + '/../trusted_setup.json');
   });
 
   should('eth-signer', () => {
