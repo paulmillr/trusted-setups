@@ -1,7 +1,7 @@
-import { bytesToHex } from '@noble/curves/abstract/utils';
 import { bls12_381 } from '@noble/curves/bls12-381';
+import { bytesToHex } from '@noble/curves/utils.js';
 import { sha256 } from '@noble/hashes/sha2';
-import { KZG } from 'micro-eth-signer/kzg';
+import { KZG } from 'micro-eth-signer/kzg.js';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join as pjoin } from 'node:path';
 
@@ -39,9 +39,10 @@ function write(path, data) {
 
 async function fk20precomputes() {
   // NOTE: at this point it should be already built
-  const setup = (await import('../esm/small-peerdas.js')).trustedSetup;
+  const setup = (await import('../small-peerdas.js')).trustedSetup;
   const kzg = new KZG(setup);
   let ts = Date.now();
+  console.log(KZG.prototype, 'parseG1' in kzg, 'Fk20Precomputes' in kzg);
   kzg.Fk20Precomputes();
   console.log('calculate Fk20Precomputes', Date.now() - ts);
   return kzg.fk20Columns.flat().map((i) => {
@@ -63,9 +64,9 @@ function writeFiles(file, g1, g2, g1_mon, fk20) {
   res += ' };\n';
   if (file.includes('fast')) res += 'setup.encoding = "fast_v1";\n';
   const resESM = res + 'export const trustedSetup = setup;\n';
-  const resCJS = res + 'exports.trustedSetup = setup;';
-  write(`esm/${file}.js`, resESM);
-  write(`cjs/${file}.js`, resCJS);
+  write(`${file}.js`, resESM);
+  // const resCJS = res + 'exports.trustedSetup = setup;';
+  // write(`cjs/${file}.js`, resCJS);
 }
 
 function assertSha256(buffer, checksum) {
@@ -115,8 +116,8 @@ async function main() {
     ) + '\n';
   write('trusted_setup.json', json);
 
-  console.log('verifying checksum of esm/small-kzg.js');
-  assertSha256(readFileSync('./esm/small-kzg.js'), CHECKSUM_output_mjs);
+  console.log('verifying checksum of small-kzg.js');
+  assertSha256(readFileSync('./small-kzg.js'), CHECKSUM_output_mjs);
 }
 
 main();

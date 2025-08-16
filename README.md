@@ -4,7 +4,7 @@ Easily access KZG + PeerDAS / ETH [trusted setups](https://vitalik.eth.limo/gene
 
 Exports 5 files:
 
-- `small-kzg.js` (default) - 400KB KZG setup
+- `small-kzg.js` - 400KB KZG setup
 - `small-peerdas.js` - ~800KB KZG+PeerDAS setup
 - `fast-kzg.js` - fast ~800KB KZG setup for [eth-signer](https://github.com/paulmillr/micro-eth-signer)
 - `fast-peerdas.js` - fast 3.1MB KZG+PeerDAS setup for [eth-signer](https://github.com/paulmillr/micro-eth-signer)

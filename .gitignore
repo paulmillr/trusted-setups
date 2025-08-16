@@ -1,7 +1,8 @@
 node_modules
-/build/micro-eth-signer.js
+*.tgz
+/*.js
+*.js.map
 *.d.ts
 *.d.ts.map
-*.js.map
-/*.js
-/trusted_setup.json
+/test/build
+/test/compiled

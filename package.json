@@ -2,59 +2,47 @@
   "name": "@paulmillr/trusted-setups",
   "description": "Easily access KZG / PeerDAS ETH trusted setups in JS",
   "version": "0.2.0",
-  "main": "cjs/small-kzg.js",
+  "files": [
+    "small-kzg.js",
+    "small-peerdas.js",
+    "fast-kzg.js",
+    "fast-peerdas.js",
+    "small-kzg.d.ts",
+    "small-peerdas.d.ts",
+    "fast-kzg.d.ts",
+    "fast-peerdas.d.ts",
+    "trusted_setup.json"
+  ],
+  "devDependencies": {
+    "@noble/curves": "1.9.1",
+    "@noble/hashes": "1.8.0",
+    "@paulmillr/jsbt": "0.4.1",
+    "c-kzg": "4.0.1",
+    "kzg-wasm": "0.4.0",
+    "micro-bmark": "0.4.2",
+    "micro-should": "0.5.3",
+    "typescript": "5.9.2"
+  },
   "scripts": {
     "build": "node test/build.mjs",
     "test": "cd test; npm install; node index.test.js"
   },
-  "author": "Paul Miller (https://paulmillr.com)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/paulmillr/trusted-setups.git"
-  },
-  "license": "MIT",
-  "files": [
-    "cjs",
-    "esm",
-    "trusted_setup.json",
-    "esm/package.json"
-  ],
-  "exports": {
-    ".": {
-      "import": "./esm/small-kzg.js",
-      "require": "./cjs/small-kzg.js"
-    },
-    "./small-kzg.js": {
-      "import": "./esm/small-kzg.js",
-      "require": "./cjs/small-kzg.js"
-    },
-    "./small-peerdas.js": {
-      "import": "./esm/small-peerdas.js",
-      "require": "./cjs/small-peerdas.js"
-    },
-    "./fast-kzg.js": {
-      "import": "./esm/fast-kzg.js",
-      "require": "./cjs/fast-kzg.js"
-    },
-    "./fast-peerdas.js": {
-      "import": "./esm/fast-peerdas.js",
-      "require": "./cjs/fast-peerdas.js"
-    }
-  },
-  "devDependencies": {
-    "@noble/curves": "1.9.1",
-    "@noble/hashes": "1.8.0",
-    "@paulmillr/jsbt": "0.4.0",
-    "c-kzg": "4.0.1",
-    "kzg-wasm": "0.4.0",
-    "micro-should": "0.5.2"
-  },
-  "sideEffects": false,
   "keywords": [
     "ethereum",
     "eth",
     "kzg",
     "sign",
     "trusted setup"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulmillr/trusted-setups.git"
+  },
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "author": "Paul Miller (https://paulmillr.com)",
+  "license": "MIT"
 }

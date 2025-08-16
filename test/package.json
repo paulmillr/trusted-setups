@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "micro-eth-signer": "^0.14.0"
+    "micro-eth-signer": "^0.15.0"
   }
 }
