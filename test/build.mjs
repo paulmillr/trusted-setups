@@ -1,7 +1,7 @@
-import { bls12_381 } from '@noble/curves/bls12-381';
+import { bls12_381 } from '@noble/curves/bls12-381.js';
 import { bytesToHex } from '@noble/curves/utils.js';
-import { sha256 } from '@noble/hashes/sha2';
-import { KZG } from 'micro-eth-signer/kzg.js';
+import { sha256 } from '@noble/hashes/sha2.js';
+import { KZG } from 'micro-eth-signer/advanced/kzg.js';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join as pjoin } from 'node:path';
 
@@ -32,6 +32,10 @@ function hexToCoords(pointConstructor) {
   };
 }
 
+function read_(path) {
+  return readFileSync(pjoin(import.meta.dirname, '..', path), 'utf-8');
+}
+
 function write(path, data) {
   console.log('writing', path);
   writeFileSync(pjoin(import.meta.dirname, '..', path), data);
@@ -43,7 +47,7 @@ async function fk20precomputes() {
   const kzg = new KZG(setup);
   let ts = Date.now();
   console.log(KZG.prototype, 'parseG1' in kzg, 'Fk20Precomputes' in kzg);
-  kzg.Fk20Precomputes();
+  kzg._Fk20Precomputes();
   console.log('calculate Fk20Precomputes', Date.now() - ts);
   return kzg.fk20Columns.flat().map((i) => {
     const { x, y } = i.toAffine();
@@ -70,12 +74,12 @@ function writeFiles(file, g1, g2, g1_mon, fk20) {
 }
 
 function assertSha256(buffer, checksum) {
-  if (bytesToHex(sha256(buffer)) !== checksum) throw new Error('invalid checksum');
+  if (bytesToHex(sha256(new TextEncoder().encode(buffer))) !== checksum) throw new Error('invalid checksum');
 }
 
 async function main() {
   console.log('reading trusted_setup.txt');
-  const rawFile = readFileSync(pjoin(import.meta.dirname, '..', 'trusted_setup.txt'), 'utf-8');
+  const rawFile = read_('trusted_setup.txt');
   const lines = rawFile.split('\n');
   assertSha256(rawFile, CHECKSUM);
   if (lines.length !== 2 + 4096 + 65 + 4096 + 1)
@@ -93,9 +97,9 @@ async function main() {
   // fast.js, takes 3 sec
   console.log('decompressing points');
   const start = Date.now();
-  const g1_lag_raw = g1_lag.map(hexToCoords(bls12_381.G1.ProjectivePoint));
-  const g2_mon_raw = g2_mon.map(hexToCoords(bls12_381.G2.ProjectivePoint));
-  const g1_mon_raw = g1_mon.map(hexToCoords(bls12_381.G1.ProjectivePoint));
+  const g1_lag_raw = g1_lag.map(hexToCoords(bls12_381.G1.Point));
+  const g2_mon_raw = g2_mon.map(hexToCoords(bls12_381.G2.Point));
+  const g1_mon_raw = g1_mon.map(hexToCoords(bls12_381.G1.Point));
   console.log('decompressed in', Date.now() - start, 'ms');
 
   writeFiles('small-kzg', g1_lag, g2_mon);

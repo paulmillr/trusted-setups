@@ -1,26 +1,24 @@
 {
   "name": "@paulmillr/trusted-setups",
   "description": "Easily access KZG / PeerDAS ETH trusted setups in JS",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "files": [
     "small-kzg.js",
-    "small-peerdas.js",
-    "fast-kzg.js",
-    "fast-peerdas.js",
     "small-kzg.d.ts",
+    "small-peerdas.js",
     "small-peerdas.d.ts",
+    "fast-kzg.js",
     "fast-kzg.d.ts",
+    "fast-peerdas.js",
     "fast-peerdas.d.ts",
     "trusted_setup.json"
   ],
   "devDependencies": {
-    "@noble/curves": "1.9.1",
-    "@noble/hashes": "1.8.0",
-    "@paulmillr/jsbt": "0.4.1",
+    "@noble/curves": "^2.0.0-beta.3",
+    "@noble/hashes": "^2.0.0-beta.5",
+    "@paulmillr/jsbt": "0.4.3",
     "c-kzg": "4.0.1",
     "kzg-wasm": "0.4.0",
-    "micro-bmark": "0.4.2",
-    "micro-should": "0.5.3",
     "typescript": "5.9.2"
   },
   "scripts": {
@@ -39,9 +37,9 @@
     "url": "git+https://github.com/paulmillr/trusted-setups.git"
   },
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "main": "small-kzg.js",
+  "module": "small-kzg.js",
+  "types": "small-kzg.d.ts",
   "sideEffects": false,
   "author": "Paul Miller (https://paulmillr.com)",
   "license": "MIT"
