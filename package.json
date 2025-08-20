@@ -14,15 +14,11 @@
     "trusted_setup.json"
   ],
   "devDependencies": {
-    "@noble/curves": "^2.0.0-beta.3",
-    "@noble/hashes": "^2.0.0-beta.5",
     "@paulmillr/jsbt": "0.4.3",
-    "c-kzg": "4.0.1",
-    "kzg-wasm": "0.4.0",
     "typescript": "5.9.2"
   },
   "scripts": {
-    "build": "node test/build.mjs",
+    "build": "cd test; npm install; node build.js",
     "test": "cd test; npm install; node index.test.js"
   },
   "keywords": [

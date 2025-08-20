@@ -46,7 +46,6 @@ async function fk20precomputes() {
   const setup = (await import('../small-peerdas.js')).trustedSetup;
   const kzg = new KZG(setup);
   let ts = Date.now();
-  console.log(KZG.prototype, 'parseG1' in kzg, 'Fk20Precomputes' in kzg);
   kzg._Fk20Precomputes();
   console.log('calculate Fk20Precomputes', Date.now() - ts);
   return kzg.fk20Columns.flat().map((i) => {
@@ -121,7 +120,7 @@ async function main() {
   write('trusted_setup.json', json);
 
   console.log('verifying checksum of small-kzg.js');
-  assertSha256(readFileSync('./small-kzg.js'), CHECKSUM_output_mjs);
+  assertSha256(readFileSync('../small-kzg.js'), CHECKSUM_output_mjs);
 }
 
 main();
