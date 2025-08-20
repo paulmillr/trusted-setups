@@ -1,6 +1,6 @@
 # trusted-setups
 
-Easily access KZG + PeerDAS / ETH [trusted setups](https://vitalik.eth.limo/general/2022/03/14/trustedsetup.html) in JS.
+Easily access KZG (EIP-4844) + PeerDAS (EIP-7594) / ETH [trusted setups](https://vitalik.eth.limo/general/2022/03/14/trustedsetup.html) in JS.
 
 Exports 5 files:
 
