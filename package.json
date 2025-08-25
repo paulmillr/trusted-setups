@@ -14,7 +14,7 @@
     "trusted_setup.json"
   ],
   "devDependencies": {
-    "@paulmillr/jsbt": "0.4.3",
+    "@paulmillr/jsbt": "0.4.4",
     "typescript": "5.9.2"
   },
   "scripts": {
