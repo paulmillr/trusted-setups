@@ -5,9 +5,9 @@
   "description": "",
   "type": "module",
   "devDependencies": {
-    "micro-eth-signer": "^0.17.0",
-    "@noble/curves": "^2.0.0-beta.3",
-    "@noble/hashes": "^2.0.0-beta.5",
+    "micro-eth-signer": "^0.17.1",
+    "@noble/curves": "^2.0.0",
+    "@noble/hashes": "^2.0.0",
     "c-kzg": "4.0.1",
     "kzg-wasm": "0.4.0"
   }
