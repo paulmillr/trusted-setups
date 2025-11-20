@@ -5,7 +5,7 @@
   "description": "",
   "type": "module",
   "devDependencies": {
-    "micro-eth-signer": "^0.17.1",
+    "micro-eth-signer": "^0.17.3",
     "@noble/curves": "^2.0.0",
     "@noble/hashes": "^2.0.0",
     "c-kzg": "4.0.1",

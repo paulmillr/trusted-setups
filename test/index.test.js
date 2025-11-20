@@ -1,10 +1,10 @@
-import { describe, should } from 'micro-should';
+import { describe, should } from '@paulmillr/jsbt/test.js';
 import { strictEqual } from 'node:assert';
 import { trustedSetup as fastSetup } from '../fast-kzg.js';
 import { trustedSetup } from '../small-kzg.js';
 
 // eth-signer
-import { KZG } from 'micro-eth-signer/kzg.js';
+import { KZG } from 'micro-eth-signer/advanced/kzg.js';
 
 // kzg-wasm
 import { loadKZG } from 'kzg-wasm';
