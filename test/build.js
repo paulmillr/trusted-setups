@@ -1,7 +1,7 @@
 import { bls12_381 } from '@noble/curves/bls12-381.js';
 import { bytesToHex } from '@noble/curves/utils.js';
 import { sha256 } from '@noble/hashes/sha2.js';
-import { KZG } from 'micro-eth-signer/advanced/kzg.js';
+import { KZG } from 'micro-eth-signer/kzg.js';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join as pjoin } from 'node:path';
 

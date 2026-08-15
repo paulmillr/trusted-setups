@@ -5,10 +5,10 @@
   "description": "",
   "type": "module",
   "devDependencies": {
-    "micro-eth-signer": "^0.17.3",
-    "@noble/curves": "^2.0.0",
-    "@noble/hashes": "^2.0.0",
-    "c-kzg": "4.0.1",
+    "micro-eth-signer": "^0.20.0",
+    "@noble/curves": "^2.3.0",
+    "@noble/hashes": "^2.3.0",
+    "c-kzg": "4.1.0",
     "kzg-wasm": "0.4.0"
   }
 }
