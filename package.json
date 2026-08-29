@@ -14,7 +14,7 @@
     "trusted_setup.json"
   ],
   "devDependencies": {
-    "@paulmillr/jsbt": "0.7.0",
+    "@paulmillr/jsbt": "0.7.1",
     "bismar": "0.1.8",
     "typescript": "6.0.3"
   },
